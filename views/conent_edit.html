@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<h3>内容添加</h3>
+
+
+<div class="form-group">
+  <label for="title">分类：</label>
+  <select name="type" id="category" class="form-control">
+    {%for typelist in typelist%}
+    {% if editconent.type == typelist.name %}
+    <option value="{{typelist.id}}" selected>{{typelist.name}}</option>
+    {%else%}
+    <option value="{{typelist.id}}">{{typelist.name}}</option>
+    {%endif%}
+    {%endfor%}
+  </select>
+</div>
+
+<div class="form-group" data-val="{{editconent._id.toString()}}" id="editbox">
+  <label for="title">标题：</label>
+  <input type="text" class="form-control" id="title" placeholder="请输入内容标题" name="title" value="{{editconent.title}}">
+</div>
+
+<div class="form-group">
+  <label for="description">简介：</label>
+  <textarea name="description" id="description" class="form-control" rows="5" placeholder="请输入内容简介">{{editconent.description}}</textarea>
+</div>
+
+<div class="form-group">
+  <label for="conent">内容：</label>
+  <textarea name="content" id="conent" class="form-control" rows="10" placeholder="请输入内容" onkeyup="compile()">{{editconent.conent}}</textarea>
+</div>
+<div id="result"></div>
+<button type="submit" class="btn btn-default">提交</button>
+
+<script>
+  function compile(){
+    var text = document.getElementById("conent").value;
+    var converter = new showdown.Converter();
+    var html = converter.makeHtml(text);
+    document.getElementById("result").innerHTML = html;
+    console.log(text)
+  }
+  $(".btn-default").click(function () {
+    var datas=new Date();
+    if($("#title").val()=="" || $("#description").val()=="" || $("#content").val()==""){
+      alert("内容不完整")
+      return false;
+    }
+    $.ajax({
+      type:'post',
+      url:'/views/admin/conent_edit',
+      data:{
+        id:$("#editbox").data('val'),
+        type:$("#category").find("option:selected").text(),
+        title:$("#title").val(),
+        description:$("#description").val(),
+        conent:$("#conent").val(),
+        time:datas.getFullYear()+'年'+parseInt(datas.getMonth()+1)+'月'+datas.getDay()+'日',
+        timer:datas.getFullYear()+'-'+parseInt(datas.getMonth()+1)+'-'+datas.getDay(),
+        timers:datas.getHours()+':'+datas.getMinutes()
+      },
+      success:function (rs) {
+
+        if(rs.code==200){
+          location.href="/views/conent";
+        }else{
+          alert(rs.message)
+        }
+      }
+    })
+  })
+</script>
+{% endblock %}
