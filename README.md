@@ -14,6 +14,6 @@ express+mongodb+前台vue+后台管理swig模板，搭建的小型博客。
 开启数据库借助的是robo3T 下载地址:'https://robomongo.org/'  
 
 先打开控制台，进入mongodb的文件下面的bin目录执行  
-mongod --dbpath=d:\vueblogs\bd --port=27020 #d:\vueblogs\bd 是项目
+mongod --dbpath=d:\vueblogs\bd --port=27020 #d:\vueblogs\bd 是项目  
 然后打开robo3T里面你建立的27020的连接，就启动成功了。
 
