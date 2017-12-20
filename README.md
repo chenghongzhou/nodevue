@@ -1,21 +1,9 @@
 # vueblogs
 
-> A Vue.js project
+express+mongodb+前台vue+后台管理swig模板，搭建的小型博客。  
 
-## Build Setup
+包括分类，登陆，注册，评论  
 
-``` bash
-# install dependencies
-npm install
+本来是想写好放线上去，但看了看一台独立的服务器还挺贵的哈。想了想就算了，直接在github上搞个个人博客算了。地址:'https://github.com/insistmd/insistmd.github.io'  
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+所以也不准备再写了,页面很简陋。但还是先留着把，说不定以后会用上
